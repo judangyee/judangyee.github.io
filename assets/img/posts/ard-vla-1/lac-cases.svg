@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 330" font-family="Helvetica, Arial, sans-serif">
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a8a89c"/></marker></defs>
+  <rect width="760" height="330" fill="#fff"/>
+  <text x="24" y="34" font-size="18" font-weight="700" fill="#222">Opposite motion is intentional; independent shaking is jitter</text>
+  <g font-size="12.5" fill="#666" text-anchor="middle">
+    <!-- card 1 -->
+    <rect x="24" y="54" width="226" height="260" rx="10" fill="#fff" stroke="#e2e2de"/>
+    <text x="137" y="86" font-size="15" font-weight="700" fill="#222">Move together</text>
+    <text x="137" y="106">Carrying a desk</text>
+    <circle cx="97" cy="172" r="22" fill="#fff" stroke="#cfcfc6"/><text x="97" y="176" fill="#444">Left</text>
+    <circle cx="177" cy="172" r="22" fill="#fff" stroke="#cfcfc6"/><text x="177" y="176" fill="#444">Right</text>
+    <rect x="44" y="234" width="186" height="58" rx="8" fill="#e5f5e8" stroke="#3a9a4a" stroke-width="2"/>
+    <text x="137" y="258" font-weight="700" fill="#222">Call: large motion</text><text x="137" y="278">Execute as is</text>
+    <!-- card 2 -->
+    <rect x="267" y="54" width="226" height="260" rx="10" fill="#fff" stroke="#e2e2de"/>
+    <text x="380" y="86" font-size="15" font-weight="700" fill="#222">Push opposite ways</text>
+    <text x="380" y="106">Hold bottle, twist cap</text>
+    <circle cx="340" cy="172" r="22" fill="#fff" stroke="#cfcfc6"/><text x="340" y="176" fill="#444">Left</text>
+    <circle cx="420" cy="172" r="22" fill="#fff" stroke="#cfcfc6"/><text x="420" y="176" fill="#444">Right</text>
+    <rect x="287" y="234" width="186" height="58" rx="8" fill="#e9f1fc" stroke="#3b7dd8" stroke-width="2"/>
+    <text x="380" y="258" font-weight="700" fill="#222">Call: intentional coordination</text><text x="380" y="278">Keep it</text>
+    <!-- card 3 -->
+    <rect x="510" y="54" width="226" height="260" rx="10" fill="#fff" stroke="#e2e2de"/>
+    <text x="623" y="86" font-size="15" font-weight="700" fill="#222">Shake independently</text>
+    <text x="623" y="106">Hands trembling</text>
+    <circle cx="583" cy="172" r="22" fill="#fff" stroke="#cfcfc6"/><text x="583" y="176" fill="#444">Left</text>
+    <circle cx="663" cy="172" r="22" fill="#fff" stroke="#cfcfc6"/><text x="663" y="176" fill="#444">Right</text>
+    <rect x="530" y="234" width="186" height="58" rx="8" fill="#fdf5e0" stroke="#e0b030" stroke-width="2"/>
+    <text x="623" y="258" font-weight="700" fill="#222">Call: jitter</text><text x="623" y="278">Smooth it out</text>
+  </g>
+  <g stroke="#a8a89c" stroke-width="1.6" fill="none" marker-end="url(#ar)">
+    <line x1="97" y1="146" x2="97" y2="120"/><line x1="177" y1="146" x2="177" y2="120"/>
+    <line x1="316" y1="172" x2="286" y2="172"/><line x1="444" y1="172" x2="474" y2="172"/>
+  </g>
+  <g stroke="#a8a89c" stroke-width="1.6" fill="none">
+    <polyline points="569,138 574,132 579,138 584,132 589,138 594,132 599,138"/>
+    <polyline points="649,132 654,138 659,132 664,138 669,132 674,138 679,132"/>
+  </g>
+</svg>
