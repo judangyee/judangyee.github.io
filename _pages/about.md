@@ -2,33 +2,41 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Motto. Etc.
+subtitle: CS Undergraduate · SCHOOL_NAME · Independent VLA Researcher
 
 profile:
   align: right
-  image: prof_pic.jpg
-  image_circular: false # crops the image to make it circular
+  image: # add a photo at assets/img/prof_pic.jpg and set it here
+  image_circular: false
   more_info: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
+    <p>Seoul, South Korea</p>
 
-selected_papers: true # includes a list of papers marked as "selected={true}"
-social: true # includes social icons at the bottom of the page
+selected_papers: false
+social: true
 
 announcements:
-  enabled: true # includes a list of news items
-  scrollable: true # adds a vertical scroll bar if there are more than 3 news items
-  limit: 5 # leave blank to include all the news in the `_news` folder
+  enabled: true
+  scrollable: true
+  limit: 5
 
 latest_posts:
   enabled: true
-  scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
-  limit: 3 # leave blank to include all the blog posts
+  scrollable: true
+  limit: 3
 ---
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](https://www.reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+I'm a computer science undergraduate doing independent research on **Vision-Language-Action (VLA) models** for robotic manipulation.
 
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
+Most bimanual robot learning treats both arms symmetrically. Humans don't: one hand stabilizes while the other acts.
+My main project, **[ARD-VLA](/projects/ard-vla/)**, builds that role asymmetry into a VLA, with separate _Stabilizer_ and _Actuator_ action heads on top of SmolVLA.
+It targets fine, force-sensitive tasks such as peg-in-hole insertion and cap twisting.
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+To get training data without a teleoperation rig, I built **[ARD-Gen](/projects/ard-gen/)**, a data generation pipeline for bimanual fine manipulation on a simulated OpenArm.
+It finds seed trajectories with CMA-ES, augments them differently for each arm's role, and labels them with language automatically.
+
+I'm also interested in **on-device VLA**: making these models small and fast enough to run on the robot itself.
+I've worked with LoRA, 4/8-bit quantization, gradient checkpointing, layer-importance analysis, and visual token pruning.
+
+Long term, I want to build VLA systems that handle dexterous tool use and bimanual work in manufacturing.
+
+**Research interests:** Vision-Language-Action models · Bimanual manipulation · Tool use · On-device & efficient VLA · Robot learning
