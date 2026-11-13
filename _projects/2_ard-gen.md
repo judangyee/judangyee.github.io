@@ -1,12 +1,14 @@
 ---
 layout: page
 title: ARD-Gen
-description: Teleoperation-free data generation for bimanual fine manipulation
+description: Teleoperation-free data generation for bimanual fine manipulation. 🚧 Under active development.
 importance: 2
 category: research
 permalink: /projects/ard-gen/
 github: https://github.com/judangyee/ARD-Gen
 ---
+
+**Status:** 🚧 under active development
 
 **Code:** [github.com/judangyee/ARD-Gen](https://github.com/judangyee/ARD-Gen)
 

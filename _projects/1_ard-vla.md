@@ -1,13 +1,13 @@
 ---
 layout: page
 title: ARD-VLA
-description: Asymmetric Residual Dual action heads for bimanual fine manipulation
+description: Asymmetric Residual Dual action heads for bimanual fine manipulation. 🚧 Under active development.
 importance: 1
 category: research
 permalink: /projects/ard-vla/
 ---
 
-**Status:** paper in preparation · simulation stage
+**Status:** 🚧 under active development · paper in preparation · simulation stage
 
 ### Motivation
 
