@@ -32,4 +32,4 @@ ARD-VLA builds this asymmetry into the model.
 ### Next
 
 - Train and evaluate on real bimanual data, including the RoCo Challenge assembly tasks.
-- Validate ARD-VLA 1.0's closed-loop judging and role-aware LAC with real weights ([details](/blog/2026/ard-vla-1/)).
+- Validate ARD-VLA 2.0's closed-loop judging and role-aware LAC with real weights ([details](/blog/2026/ard-vla-2/)).
