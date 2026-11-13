@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: CS Undergraduate · SCHOOL_NAME · Independent VLA Researcher
+subtitle: CS Undergraduate · Kyonggi University · Independent VLA Researcher
 
 profile:
   align: right
