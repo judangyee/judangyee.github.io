@@ -1,0 +1,181 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> ARD-VLA 2.0: closing the loop with a shared-backbone judge | Jooyoung Song </title> <meta name="author" content="Jooyoung Song"> <meta name="description" content="Adding success judgment, step selection, and recovery to a bimanual VLA without a second model"> <meta name="keywords" content="vision-language-action, VLA, robot learning, bimanual manipulation, tool use, on-device VLA, SmolVLA, robotics"> <meta property="og:site_name" content="Jooyoung Song"> <meta property="og:type" content="article"> <meta property="og:title" content="Jooyoung Song | ARD-VLA 2.0: closing the loop with a shared-backbone judge"> <meta property="og:url" content="https://judangyee.github.io/blog/2026/ard-vla-2-closed-loop/"> <meta property="og:description" content="Adding success judgment, step selection, and recovery to a bimanual VLA without a second model"> <meta property="og:locale" content="en"> <meta name="twitter:card" content="summary"> <meta name="twitter:title" content="ARD-VLA 2.0: closing the loop with a shared-backbone judge"> <meta name="twitter:description" content="Adding success judgment, step selection, and recovery to a bimanual VLA without a second model"> <script type="application/ld+json">
+    {
+        "author":
+        {
+            "@type": "Person",
+            "name": "Jooyoung Song"
+        },
+        "url": "https://judangyee.github.io/blog/2026/ard-vla-2-closed-loop/",
+        "@type": "BlogPosting",
+        "description": "Adding success judgment, step selection, and recovery to a bimanual VLA without a second model",
+        "headline": "ARD-VLA 2.0: closing the loop with a shared-backbone judge",
+        
+        "sameAs": ["https://github.com/judangyee","https://www.linkedin.com/in/joo-young-song-b59a91280"],
+        
+        "name": "Jooyoung Song",
+        "@context": "https://schema.org"
+    }
+  </script> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%F0%9F%A4%96&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css?v=3116ba77db9ee1581d05bb3e86fbf7f1"> <link rel="canonical" href="https://judangyee.github.io/blog/2026/ard-vla-2-closed-loop/"> <script src="/assets/js/theme.js?v=5286c3e4c334d0ecb8fc0c40ff4fa7ec"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> <span class="font-weight-bold">Jooyoung</span> Song </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">about </a> </li> <li class="nav-item "> <a class="nav-link" href="/projects/">projects </a> </li> <li class="nav-item active"> <a class="nav-link" href="/blog/">blog </a> </li> <li class="nav-item "> <a class="nav-link" href="/repositories/">repositories </a> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">ARD-VLA 2.0: closing the loop with a shared-backbone judge</h1> <p class="post-meta"> Created on October 18, 2026 </p> <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/ard-vla"> <i class="fa-solid fa-hashtag fa-sm"></i> ard-vla</a>   <a href="/blog/tag/closed-loop"> <i class="fa-solid fa-hashtag fa-sm"></i> closed-loop</a>   <a href="/blog/tag/task-planning"> <i class="fa-solid fa-hashtag fa-sm"></i> task-planning</a>   <a href="/blog/tag/smolvla"> <i class="fa-solid fa-hashtag fa-sm"></i> smolvla</a>   ·   <a href="/blog/category/research-notes"> <i class="fa-solid fa-tag fa-sm"></i> research-notes</a> </p> </header> <article class="post-content"> <div id="markdown-content"> <h2 id="the-problem-the-original-model-is-open-loop">The problem: the original model is open-loop</h2> <p>The first version of <a href="/projects/ard-vla/">ARD-VLA</a> only produces actions. It never checks whether a step succeeded. If a grasp slips or an insertion misses, the model doesn’t notice. It moves on to the next step from a failed state and has no way to retry.</p> <p>So I upgraded it to <strong>judge success at every step and plan around failures</strong>.</p> <h2 id="architecture-one-backbone-three-branches">Architecture: one backbone, three branches</h2> <p>The judge is inspired by <strong>Laya</strong>, a “System 1” model that outputs only success/failure probabilities instead of generating text. Running a second VLM backbone just for judging would be expensive, so I kept SmolVLA’s <strong>SmolVLM2</strong> backbone and borrowed only Laya’s output format.</p> <p>A single backbone pass reads the inputs once. Three branches share its features:</p> <table> <thead> <tr> <th>Branch</th> <th>Role</th> <th>Output</th> </tr> </thead> <tbody> <tr> <td><strong>Judge head</strong></td> <td>what to do</td> <td>calibrated success probability, one of 5 failure types, progress (0–1); no gradient into the backbone</td> </tr> <tr> <td><strong>Selector head</strong></td> <td>what to do</td> <td>picks one allowed candidate: next step, a recovery, or stop</td> </tr> <tr> <td><strong>Action expert + ARD heads</strong></td> <td>how to move</td> <td>50-step action chunk via flow matching, split into Stabilizer (left arm) and Actuator (right arm)</td> </tr> </tbody> </table> <p>The inputs are the camera image, an instruction (goal, current subtask, and completed steps), and the robot state (16 DoF: 7 joints + 1 gripper per arm).</p> <p>On top sits a <strong>decision layer</strong>. It is a set of rules, not a trained module, and it outputs one of <code class="language-plaintext highlighter-rouge">ADVANCE</code>, <code class="language-plaintext highlighter-rouge">RETRY</code>, <code class="language-plaintext highlighter-rouge">RECOVER</code>, <code class="language-plaintext highlighter-rouge">RECHECK</code>, or <code class="language-plaintext highlighter-rouge">STOP</code>. That decision sets the next cycle’s instruction and whether the chunk gets executed. A safety rule restricts it to allowed candidates and stops the robot once a retry limit is exceeded.</p> <h2 id="one-cycle">One cycle</h2> <ol> <li>Observe and build the instruction for the current node.</li> <li>Run <strong>one backbone forward pass</strong>, which produces the action chunk and the Judge/Selector outputs.</li> <li>If the previous subtask just ended, the decision layer acts: <ul> <li> <code class="language-plaintext highlighter-rouge">RETRY</code>: execute this chunk as is.</li> <li> <code class="language-plaintext highlighter-rouge">ADVANCE</code> / <code class="language-plaintext highlighter-rouge">RECOVER</code>: the instruction changes, so observe again.</li> <li> <code class="language-plaintext highlighter-rouge">RECHECK</code>: observe again without executing.</li> <li> <code class="language-plaintext highlighter-rouge">STOP</code>: move to a safe pose and end.</li> </ul> </li> <li>Otherwise, execute the chunk step by step until the subtask ends or its step budget runs out.</li> </ol> <p>Judgment happens <strong>only after a subtask ends</strong>, based on what the robot observes after executing it. While a subtask is in progress, the cost is one forward pass per chunk. <code class="language-plaintext highlighter-rouge">ADVANCE</code> and <code class="language-plaintext highlighter-rouge">RECOVER</code> add one extra pass because the instruction changes. So “one backbone pass” holds per chunk; actual end-to-end latency still has to be measured with real weights.</p> <h2 id="task-planning-in-three-layers">Task planning in three layers</h2> <table> <thead> <tr> <th>Layer</th> <th>When</th> <th>Who</th> <th>What it does</th> </tr> </thead> <tbody> <tr> <td><strong>Task graph</strong></td> <td>before execution</td> <td>a human (for fixed processes) or an LLM</td> <td>defines subtasks, their order, entry/exit conditions, allowed recoveries, and retry limits</td> </tr> <tr> <td><strong>In-execution selection</strong></td> <td>after each subtask</td> <td>decision layer + Selector</td> <td>chooses the next node, a recovery, a recheck, or stop, but only among options the graph allows</td> </tr> <tr> <td><strong>Replanning</strong></td> <td>after <code class="language-plaintext highlighter-rouge">STOP</code> </td> <td>a human or an LLM</td> <td>edits the graph itself from a safe pose (add steps, reorder, change recovery methods)</td> </tr> </tbody> </table> <p>For example, a peg-in-hole graph is <code class="language-plaintext highlighter-rouge">align → insert → done</code>. Each step has recovery candidates:</p> <ul> <li>R1: redo the same step</li> <li>R2: return to the start pose</li> <li>R3: retry with different settings</li> </ul> <p>At first a rule table picks the recovery; later the trained Selector picks it from the scene. If the limit is exceeded, the robot executes <strong>R4 STOP</strong>: it holds a safe pose, and the graph is fixed one level up.</p> <h2 id="how-this-differs-from-existing-approaches">How this differs from existing approaches</h2> <table> <thead> <tr> <th>Compared with</th> <th>Their limitation</th> <th>ARD-VLA 2.0</th> </tr> </thead> <tbody> <tr> <td>Open-loop VLAs (SmolVLA, OpenVLA, ARD-VLA v1)</td> <td>never check success; move on from failed states</td> <td>judges every step and retries the same step with a different method</td> </tr> <tr> <td>LLM planner + VLA</td> <td>replanning mid-execution takes seconds; can hallucinate steps or break format</td> <td>judging and selection fit inside one backbone pass; nothing is generated, so no invented steps</td> </tr> <tr> <td>Separate VLM success detector</td> <td>a second model adds memory and latency</td> <td>shares the policy’s backbone and adds only small heads, so it targets a single consumer GPU</td> </tr> <tr> <td>Symmetric bimanual VLAs</td> <td>can’t tell which arm caused a failure</td> <td>judges right-arm failures and left-arm slips separately, carrying role asymmetry into judging</td> </tr> </tbody> </table> <p><strong>Caveat:</strong> these are design-level differences. The structure is implemented and passes tests with a tiny synthetic model, but it hasn’t been trained or measured with real weights yet. Running it in Isaac Sim is the next step once I have the hardware.</p> <p>Code: <a href="https://github.com/judangyee/ARD-VLA" rel="external nofollow noopener" target="_blank">judangyee/ARD-VLA (branch <code class="language-plaintext highlighter-rouge">closed-loop-structure</code>)</a></p> </div> </article> <br> <hr> <br> <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2> <p class="mb-2">Here are some more articles you might like to read next:</p> <ul class="list-disc pl-7 my-3 space-y-2 marker:text-[var(--global-theme-color)]"> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2026/quantization-memory/">When 4-bit quantization uses more memory than bf16</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2026/role-aware-lac/">Role-aware LAC: anti-shake filtering for asymmetric arms</a> </li> </ul> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Jooyoung Song. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/al_math/js/mathjax-setup.js"></script> <script src="/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/al_img_tools/js/zoom.js"></script> <script defer src="/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-about",
+    title: "about",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/";
+    },
+  },{id: "nav-projects",
+          title: "projects",
+          description: "Research projects on VLA models and robot learning, plus earlier engineering team work.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/projects/";
+          },
+        },{id: "nav-blog",
+          title: "blog",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/blog/";
+          },
+        },{id: "nav-repositories",
+          title: "repositories",
+          description: "Code for my research projects.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/repositories/";
+          },
+        },{id: "post-when-4-bit-quantization-uses-more-memory-than-bf16",
+        
+          title: "When 4-bit quantization uses more memory than bf16",
+        
+        description: "Measuring QLoRA-style quantization on SmolVLA for bimanual training",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/quantization-memory/";
+          
+        },
+      },{id: "post-role-aware-lac-anti-shake-filtering-for-asymmetric-arms",
+        
+          title: "Role-aware LAC: anti-shake filtering for asymmetric arms",
+        
+        description: "Adapting Co-VLA&#39;s training-free action filter to ARD-VLA&#39;s stabilizer/actuator split",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/role-aware-lac/";
+          
+        },
+      },{id: "post-ard-vla-2-0-closing-the-loop-with-a-shared-backbone-judge",
+        
+          title: "ARD-VLA 2.0: closing the loop with a shared-backbone judge",
+        
+        description: "Adding success judgment, step selection, and recovery to a bimanual VLA without a second model",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/ard-vla-2-closed-loop/";
+          
+        },
+      },{id: "books-the-godfather",
+          title: 'The Godfather',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/the_godfather/";
+            },},{id: "news-ard-gen-projects-ard-gen-now-generates-bimanual-openarm-data-for-peg-in-hole-and-cap-twisting-tasks",
+          title: '[ARD-Gen](/projects/ard-gen/) now generates bimanual OpenArm data for peg-in-hole and cap-twisting tasks.',
+          description: "",
+          section: "News",},{id: "news-launched-this-website-to-share-my-vla-research-notes",
+          title: 'Launched this website to share my VLA research notes.',
+          description: "",
+          section: "News",},{id: "projects-ard-vla",
+          title: 'ARD-VLA',
+          description: "Asymmetric Residual Dual action heads for bimanual fine manipulation",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/ard-vla/";
+            },},{id: "projects-ard-gen",
+          title: 'ARD-Gen',
+          description: "Teleoperation-free data generation for bimanual fine manipulation",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/ard-gen/";
+            },},{id: "projects-student-engineering-teams",
+          title: 'Student Engineering Teams',
+          description: "Baja, Formula, and autonomous driving competitions",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/competitions/";
+            },},{id: "teachings-data-science-fundamentals",
+          title: 'Data Science Fundamentals',
+          description: "This course covers the foundational aspects of data science, including data collection, cleaning, analysis, and visualization. Students will learn practical skills for working with real-world datasets.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/data-science-fundamentals/";
+            },},{id: "teachings-introduction-to-machine-learning",
+          title: 'Introduction to Machine Learning',
+          description: "This course provides an introduction to machine learning concepts, algorithms, and applications. Students will learn about supervised and unsupervised learning, model evaluation, and practical implementations.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/introduction-to-machine-learning/";
+            },},{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/judangyee", "_blank");
+        },
+      },{
+        id: 'social-linkedin',
+        title: 'LinkedIn',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.linkedin.com/in/joo-young-song-b59a91280", "_blank");
+        },
+      },{
+        id: 'social-rss',
+        title: 'RSS Feed',
+        section: 'Socials',
+        handler: () => {
+          window.open("/feed.xml", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/assets/al_search/js/shortcut-key.js"></script> </body> </html>
