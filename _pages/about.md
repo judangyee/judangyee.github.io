@@ -6,7 +6,7 @@ subtitle: CS Undergraduate · Kyonggi University · Independent VLA Researcher
 
 profile:
   align: right
-  image: # add a photo at assets/img/prof_pic.jpg and set it here
+  image: prof_pic.jpg
   image_circular: false
   more_info: >
     <p>Seoul, South Korea</p>
