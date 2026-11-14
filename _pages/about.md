@@ -40,3 +40,9 @@ I've worked with LoRA, 4/8-bit quantization, gradient checkpointing, layer-impor
 Long term, I want to build VLA systems that handle dexterous tool use and bimanual work in manufacturing.
 
 **Research interests:** Vision-Language-Action models · Bimanual manipulation · Tool use · On-device & efficient VLA · Robot learning
+
+### Honors & Awards
+
+- **3rd Place**, Unmanned Mobility Division, Korea University Student Creative Mobility Competition (2025)
+- **Honorable Mention**, Kyonggi University Sangsang Startup Competition (2025)
+- **3rd Place**, KSAE Baja Student Korea (2024)

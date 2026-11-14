@@ -1,12 +1,13 @@
 ---
 layout: page
 title: Student Engineering Teams
-description: Baja, Formula, and autonomous driving competitions
+description: Baja, Formula, and autonomous mobility competitions
 importance: 3
 category: engineering
 permalink: /projects/competitions/
 ---
 
-- **KSAE Baja (2024): Electrical Team Lead.** Designed an electronic speedometer. The team placed 3rd.
-- **KSAE Formula (2025):** Built the data logger and infotainment system.
-- **Autonomous Driving Competition (2025): Path Planning Team Lead.**
+- **KSAE Baja Student Korea 2024: Electrical Team Lead. 🏆 3rd Place.** Designed an electronic speedometer.
+- **KSAE Baja Student Korea 2025:** Participated.
+- **KSAE Formula Student Korea 2025:** Built the data logger and infotainment system.
+- **Korea University Student Creative Mobility Competition 2025, Unmanned Mobility Division: Path Planning Team Lead. 🏆 3rd Place.**
